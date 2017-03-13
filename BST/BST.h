@@ -24,7 +24,7 @@ public:
   }
   ~TreeNode()
   {
-	  delete element;
+	  element = NULL;
 	  parent = NULL;
 	  left = NULL;
 	  right = NULL;
@@ -126,7 +126,6 @@ public:
   void printPreOrder() const;
   void printPostOrder() const;
   int getSize() const;
-  void clear(TreeNode<T> *t);
   void print() const;
   int height() const;
   vector<TreeNode<T>* >* path(T element) const;
