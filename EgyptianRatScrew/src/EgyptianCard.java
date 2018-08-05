@@ -1,17 +1,17 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class EgyptianCard implements Comparable<EgyptianCard> {
 	private String rank;
 	private String suit;
-	public ArrayList<String> ranks = new ArrayList<String>(Arrays.asList("", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"));
+	public ArrayList<String> ranks = new ArrayList<String>(Arrays.asList("", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"));
+
 	
 	
 	public EgyptianCard(String rank, String suit) {
 		if (isRank(rank)){
 			this.rank = rank;
-			if(rank.equals("10")) {
-				this.rank = "T";
-			}
+			
 		} else {
 			throw new IllegalArgumentException();
 		}
@@ -20,11 +20,11 @@ public class EgyptianCard implements Comparable<EgyptianCard> {
 		} else {
 			throw new IllegalArgumentException();
 		}
-		
+		attempts();
 	}
 	
 	public static boolean isRank(String rank){
-		if (rank.equals("A") || rank.equals("T") || rank.equals("Q") || rank.equals("J") || rank.equals("K")){
+		if (rank.equals("A") || rank.equals("Q") || rank.equals("J") || rank.equals("K")){
 		return true;
 		}		
 		for (int x = 2; x <= 10; x++){			
@@ -41,6 +41,24 @@ public class EgyptianCard implements Comparable<EgyptianCard> {
 		}else {
 			return false;
 		}
+	}
+	
+	public boolean Covers(){
+		if (rank.equals("A") || rank.equals("Q") || rank.equals("J") || rank.equals("K"))return true;
+		return false;
+	}
+	public int attempts(){
+		switch(rank){
+			case "J":
+				return 1;			
+			case "Q":
+				return 2;			
+			case "K":
+				return 3;
+			case "A":
+				return 4;
+		}
+		return 0;
 	}
 	public String getSuit() { return this.suit;}
 	public String toString() {

@@ -13,7 +13,6 @@ public class EgyptianHand{
 		}
 	}
 	
-	public void addCard(EgyptianCard card){cards.add(card);
-	}
+	public void addCard(EgyptianCard card){cards.add(card);}
 	
 }
