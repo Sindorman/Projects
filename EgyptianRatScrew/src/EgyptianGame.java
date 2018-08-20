@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.io.*;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -30,7 +32,28 @@ public class EgyptianGame {
 			p.slap_speed = slap_speed;
 			}
 		}
+		
+		// Hand cards to the players
+		for(EgyptianPlayer p : players)
+			p.addCard(deck.draw());
+		int whoTakes = -1;
+		ArrayList<EgyptianCard> CardsOnTable = new ArrayList<EgyptianCard>();
+		
+		while(winner(players) == null) {
+			for(int x = 0; x < players.size(); x ++) {
+				CardsOnTable.add(players.get(x).drawCard());
+			}
+		}
+		
 
+	}
+	
+	public static EgyptianPlayer winner(ArrayList<EgyptianPlayer> players) {
+		for(EgyptianPlayer p : players) {
+			if(p.NumCards() == 26)
+				return p;
+		}
+		return null;
 	}
 
 	public class EgyptianPlayer{
@@ -38,8 +61,18 @@ public class EgyptianGame {
 		int lost;
 		
 		double slap_speed;
+		private Queue<EgyptianCard> deck;
 		
-		public EgyptianPlayer(){this.won = 0; this.lost = 0; double slap_speed;}
+		public void addCard(EgyptianCard C) {deck.add(C);}
+		public EgyptianCard drawCard() {return deck.remove();}
+		public int NumCards() {return deck.size();}
+		
+		public EgyptianPlayer(){
+			this.won = 0; 
+			this.lost = 0; 
+			slap_speed = 0.0; 
+			deck = new LinkedList<EgyptianCard>();}
+		
 	}
 }
 
