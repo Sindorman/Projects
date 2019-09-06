@@ -1,0 +1,12 @@
+#ignore specific files
+Release
+x64
+Debug
+*.zip
+*.sdf
+*.VC
+.vs
+*.class
+*.exe
+*.cpython*
+.ipynb_checkpoints*
